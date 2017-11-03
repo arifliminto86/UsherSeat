@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Usher Seat</title>
+
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- Get rid of the url and button bars (iphone)-->
+    <meta name="mobile-web-app-capable" content="yes"> <!-- Get rid of the url and button bars (android)-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /> <!-- change the phone status bar -->
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style>
+        label {
+            cursor: pointer;
+        }
+
+        .bigcolumntd {
+            vertical-align:top;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        /** global variable **/
+        var totalPeople = 0;
+        var newPeople = 0;
+        var foreignPeople = 0;
+        var defaultRowNumber = 5;
+        var extraRowCol1 = 0;
+        var extraRowCol2 = 0;
+        var extraRowCol3 = 0;
+        var extraRowCol4 = 0;
+        var extraRowCol5 = 0;
+
+        function seat(divid)
+        {
+            //change the element color of button divid and the value
+            //state : empty->seated->newpeople->empty
+            if($(divid).text() == "O")
+            {
+                $(divid).text('X');
+                $(divid).removeClass("label-success");
+                $(divid).addClass("label-danger");
+                
+                totalPeople += 1;                
+                $(txtTotalPeople).val(totalPeople);
+            }
+            else if($(divid).text() == "X")
+            {
+                $(divid).text('N');
+                $(divid).removeClass("label-danger");
+                $(divid).addClass("label-info");
+
+                newPeople += 1;
+                $(txtNewPeople).val(newPeople);
+            }
+            else if($(divid).text() == "N")
+            {
+                $(divid).text('T');
+                $(divid).removeClass("label-info");
+                $(divid).addClass("label-warning");
+                
+                newPeople -= 1;
+                $(txtNewPeople).val(newPeople);
+
+                foreignPeople += 1;
+                $(txtForeignPeople).val(foreignPeople);
+
+            }
+            else
+            {
+                $(divid).text('O');
+                $(divid).removeClass("label-warning");
+                $(divid).addClass("label-success");
+               
+                totalPeople -= 1;
+                $(txtTotalPeople).val(totalPeople);
+
+                foreignPeople -= 1;
+                $(txtForeignPeople).val(foreignPeople);
+            }
+        }
+        //add seat dynamically depend on which table
+        function addaSeat(tableid, bigcolumn)
+        {
+            var row = defaultRowNumber;
+            if (bigcolumn == 1)
+            {
+                extraRowCol1 += 1;
+                row += extraRowCol1;
+            }
+            else if (bigcolumn == 2)
+            {
+                extraRowCol2 += 1;
+                row += extraRowCol2;
+            }
+
+           
+            var x = buildSeat(bigcolumn, row);
+            var str = " <table class='table table-stripped'><tr><td>" + x + "</td></tr></table>";
+            
+            $("#" + tableid).hide().append(str).fadeIn('slow');
+        }
+
+
+        function buildSeat(bigcol, row)
+        {
+            var idstr = "tablecol" + bigcol + "row" + row + "col";
+
+            var str = " <label id='" + idstr + "1' class='label label-success' onclick='seat(this)'>O</label> "+
+                      " <label id='" + idstr + "2' class='label label-success' onclick='seat(this)'>O</label>" +
+                      " <label id='" + idstr + "3' class='label label-success' onclick='seat(this)'>O</label>" +
+                      " <label id='" + idstr + "4' class='label label-success' onclick='seat(this)'>O</label>" +
+                      " <label id='" + idstr + "5' class='label label-success' onclick='seat(this)'>O</label>";
+
+            //alert (str);
+            return str;
+        }
+
+
+    </script>
+</head>
+<body>
+    <!--<input type="file" accept="image/*;capture=camera">-->    
+
+    <center><h1>Usher Seating apps</h1></center>
+    <center>
+        <div id="col-md-12" style="font-size:larger">
+            <table id="bigtable">
+                <thead>
+                    <tr>
+                        <th>Row 1</th><th></th>
+                        <th>Row 2 </th><th></th>
+                        <th>Row 3</th><th></th>
+                        <th>Row 4</th><th></th>
+                        <th>Row 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="bigcolumntd">
+                            <table id="tablecol1" class="table table-stripped">
+                                <tr>
+                                    <td>
+                                        <label id="tablecol1row1col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row1col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row1col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row1col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row1col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol1row2col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row2col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row2col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row2col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row2col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol1row3col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row3col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row3col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row3col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row3col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol1row4col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row4col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row4col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row4col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row4col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol1row5col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row5col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row5col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row5col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol1row5col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                            </table>                                                                                  
+                            <div id="extraseattablecol1">
+                            </div>
+                            <center>
+                                <button type="button" class="btn btn-primary" onclick="addaSeat('extraseattablecol1', 1)">+</button>
+                            </center>
+                          
+                        </td>
+                        <td></td>
+                        <td class="bigcolumntd">
+                            <table id=" tablecol2" class="table table-stripped" style="vertical-align:top;"><tr>
+                                    <td>
+                                        <label id="tablecol2row1col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row1col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row1col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row1col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row1col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol2row2col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row2col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row2col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row2col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row2col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol2row3col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row3col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row3col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row3col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row3col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol2row4col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row4col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row4col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row4col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row4col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol2row5col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row5col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row5col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row5col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol2row5col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="extraseattablecol2"></div>
+                            <center><button type="button" class="btn btn-primary" onclick="addaSeat('extraseattablecol2', 2)">+</button></center>
+                           
+                        </td>
+                        <td></td>
+                        <td class="bigcolumntd">
+                            <table id="tablecol3" class="table table-stripped">
+                                <tr>
+                                    <td>
+                                        <label id="tablecol3row1col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row1col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row1col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row1col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row1col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol3row2col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row2col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row2col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row2col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row2col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol3row3col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row3col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row3col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row3col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row3col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol3row4col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row4col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row4col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row4col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row4col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol3row5col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row5col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row5col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row5col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol3row5col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="extraseattablecol3"></div>
+                            <center><button type="button" class="btn btn-primary" onclick="addaSeat('extraseattablecol3',3)">+</button></center>
+                        </td>
+                        <td></td>
+                        <td class="bigcolumntd">
+                            <table id="tablecol4" class="table table-stripped">
+                                <tr>
+                                    <td>
+                                        <label id="tablecol4row1col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row1col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row1col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row1col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row1col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol4row2col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row2col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row2col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row2col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row2col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol4row3col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row3col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row3col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row3col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row3col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol4row4col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row4col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row4col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row4col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row4col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol4row5col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row5col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row5col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row5col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol4row5col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                            </table>                            
+                            <div id="extraseattablecol4"></div>
+                            <center><button type="button" class="btn btn-primary" onclick="addaSeat('extraseattablecol4',4)">+</button></center>
+                        </td>
+                        <td></td>
+                        <td class="bigcolumntd">
+                            <table id="tablecol5" class="table table-stripped">
+                                <tr>
+                                    <td>
+                                        <label id="tablecol5row1col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row1col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row1col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row1col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row1col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol5row2col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row2col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row2col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row2col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row2col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol5row3col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row3col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row3col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row3col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row3col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol5row4col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row4col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row4col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row4col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row4col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label id="tablecol5row5col1" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row5col2" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row5col3" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row5col4" class="label label-success" onclick='seat(this)'>O</label>
+                                        <label id="tablecol5row5col5" class="label label-success" onclick='seat(this)'>O</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="extraseattablecol5"></div>
+                            <center><button type="button" class="btn btn-primary" onclick="addaSeat('extraseattablecol5',5)">+</button></center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+           
+        </div>
+        <br /><br />
+        <div class="row"></div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="txtTotalPeople">Total People : </label>
+                <input type="text" id="txtTotalPeople" value="0" readonly="readonly"  class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="txtNewPeople">New People : </label>
+                <input type="text" id="txtNewPeople" value="0" readonly="readonly" class="form-control" />
+             </div>
+            
+            <div class="form-group">
+                <label for="txtForeignPeople">Foreign People : </label>
+                <input type="text" id="txtForeignPeople" value="0" readonly="readonly" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit to Elvanto</button>
+        </form>
+        <br/>
+            <p class="bg-success" style="font-weight:bold">To allocate person, just click the green seat (0) until it become red (X). </p>
+            <p class="bg-danger" style="font-weight:bold">To disallocate, just click the seat until it become green (o)</p>
+            <p class="bg-default" style="font-weight:bold">
+            Best Resolution : Landscape (IPAD) <br />
+            state : unallocated (Green) -> allocated (Red) -> new people (Light blue) --> foreign (Yellow) -> unallocated (Green)
+        </p>        
+    </center>
+
+</body>
+</html>
+
