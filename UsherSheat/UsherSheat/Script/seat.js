@@ -11,6 +11,9 @@
     var extraRowCol4 = 0;
     var extraRowCol5 = 0;
 
+    /**
+     * Function to change status of the seat (empty|seated|new people | empty)
+     */
     this.seat = function (divid)
     {
         //change the element color of button divid and the value
@@ -56,7 +59,9 @@
         }
     }
 
-    //add seat dynamically depend on which table
+    /*
+     * Function to add seat dynamically
+     */
     this.addSeat = function (tableid, bigcolumn)
     {
         var row = defaultRowNumber;
@@ -69,13 +74,15 @@
             row += extraRowCol2;
         }
 
-
-        var x = buildSeat(bigcolumn, row);
+        var x = this.buildSeat(bigcolumn, row);
         var str = " <table class='table table-stripped'><tr><td>" + x + "</td></tr></table>";
 
         $("#" + tableid).hide().append(str).fadeIn('slow');
     }
 
+    /**
+     * Function to build seat in one row html
+     */
     this.buildSeat = function (bigcol, row)
     {
         var idstr = "tablecol" + bigcol + "row" + row + "col";
@@ -86,7 +93,6 @@
             " <label id='" + idstr + "4' class='label label-success' onclick='seat(this)'>O</label>" +
             " <label id='" + idstr + "5' class='label label-success' onclick='seat(this)'>O</label>";
 
-        //alert (str);
         return str;
     }
 }
