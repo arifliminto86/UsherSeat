@@ -2,3 +2,6 @@ UsherSheat/packages/
 UsherSheat/UsherSheat/obj/
 UsherSheat/.vs/UsherSheat/v15/sqlite3/storage.ide
 UsherSheat/UsherSheat/bin/
+UsherSheat/UsherSheat.Common/obj/
+UsherSheat/UsherSheat.Api/obj/
+UsherSheat/UsherSheat.Api/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
