@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UsherSheat.Core
+﻿namespace UsherSheat.Core
 {
     public class Position
     {
-        public int X { get; set; };
+        /// <summary>
+        /// X position 
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        /// Y position
+        /// </summary>
         public int Y { get; set; }
     }
 }
