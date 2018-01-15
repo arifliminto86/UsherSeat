@@ -10,6 +10,10 @@
         public Position Position{get ;set; }
 
         /// <summary>
+        /// Column of the seat
+        /// </summary>
+        public int Column { get; set; }
+        /// <summary>
         /// Indicate  this seat is already occupied
         /// </summary>
         public bool IsOccupied { get; set; }
@@ -18,6 +22,5 @@
         /// Indicate if this seat is already disabled
         /// </summary>
         public bool IsDisabled { get; set; }
-
     }
 }
