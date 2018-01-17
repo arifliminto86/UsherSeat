@@ -1,5 +1,8 @@
 ﻿namespace UsherSheat.Core
 {
+    /// <summary>
+    /// The seat class
+    /// </summary>
     public class Seat
     {
         public int SeatId { get; set; }

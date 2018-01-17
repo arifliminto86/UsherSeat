@@ -1,5 +1,8 @@
 ﻿namespace UsherSheat.Core
 {
+    /// <summary>
+    /// Position of the seats
+    /// </summary>
     public class Position
     {
         /// <summary>

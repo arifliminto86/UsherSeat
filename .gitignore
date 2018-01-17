@@ -10,3 +10,6 @@ UsherSheat/.vs/UsherSheat/v15/Server/sqlite3/storage.ide-wal
 UsherSheat/.vs/UsherSheat/v15/Server/sqlite3/storage.ide-shm
 UsherSheat/.vs/UsherSheat/v15/Server/sqlite3/storage.ide
 UsherSheat/.vs/UsherSheat/v15/Server/sqlite3/db.lock
+UsherSheat/UsherSheat.Service/obj/
+UsherSheat/UsherSheat.Service/bin/Debug/netcoreapp2.0/UsherSheat.Service.dll
+UsherSheat/UsherSheat.Service/bin/
