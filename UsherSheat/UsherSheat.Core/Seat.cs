@@ -3,10 +3,8 @@
     /// <summary>
     /// The seat class
     /// </summary>
-    public class Seat
+    public class Seat : BaseClass
     {
-        public int SeatId { get; set; }
-
         /// <summary>
         /// position of the seat
         /// </summary>

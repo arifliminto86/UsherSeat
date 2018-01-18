@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UsherSheat.Core\UsherSheat.Core.csproj" />
+    <ProjectReference Include="..\UsherSheat.Service\UsherSheat.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using UsherSheat.Service;
+using UsherSheat.Service.Service;
 
 namespace UsherSheat.Api
 {
@@ -18,6 +20,8 @@ namespace UsherSheat.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddTransient<ISeatService, SeatService>();
+            services.AddTransient<IBuildingEventService, BuildingEventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

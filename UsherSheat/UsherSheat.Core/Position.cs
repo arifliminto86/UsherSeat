@@ -3,7 +3,7 @@
     /// <summary>
     /// Position of the seats
     /// </summary>
-    public class Position
+    public class Position : BaseClass
     {
         /// <summary>
         /// X position 

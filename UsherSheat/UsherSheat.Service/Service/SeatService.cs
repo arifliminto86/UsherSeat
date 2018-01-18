@@ -16,6 +16,11 @@ namespace UsherSheat.Service.Service
         }
 
         public Seat Update(int id, Seat oldObj)
+        {            
+            throw new System.NotImplementedException();
+        }
+
+        public void Create(Seat newItem)
         {
             throw new System.NotImplementedException();
         }

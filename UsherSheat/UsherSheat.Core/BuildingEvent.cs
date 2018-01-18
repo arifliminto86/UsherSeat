@@ -7,13 +7,8 @@ namespace UsherSheat.Core
     /// The building event class
     /// represeents one service that consist all of the avaiable seats
     /// </summary>
-    public class BuildingEvent
-    {
-        /// <summary>
-        /// Building Event Id
-        /// </summary>
-        public int BuildingEventId { get; set; }
-
+    public class BuildingEvent : BaseClass
+    {        
         /// <summary>
         /// Datetime when event starts
         /// </summary>

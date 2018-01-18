@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsherSheat.Api", "UsherShea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsherSheat.Core", "UsherSheat.Core\UsherSheat.Core.csproj", "{F596E6CA-099E-4D16-8481-ABD40D8A484A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsherSheat.Service", "UsherSheat.Service\UsherSheat.Service.csproj", "{31C172B8-560B-4C58-AE77-A4A63FAAF653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsherSheat.Service", "UsherSheat.Service\UsherSheat.Service.csproj", "{31C172B8-560B-4C58-AE77-A4A63FAAF653}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
