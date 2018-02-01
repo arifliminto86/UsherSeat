@@ -4,7 +4,7 @@
     /// The seat class
     /// </summary>
     public class Seat : BaseClass
-    {
+    {      
         /// <summary>
         /// position of the seat
         /// </summary>

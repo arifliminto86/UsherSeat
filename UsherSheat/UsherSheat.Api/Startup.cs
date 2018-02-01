@@ -9,6 +9,7 @@ namespace UsherSheat.Api
 {
     public class Startup
     {
+        public static DataContext DataContext;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
