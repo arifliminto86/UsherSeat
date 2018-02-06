@@ -20,7 +20,9 @@ namespace UsherSheat.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting();
             services.AddMvc();
+            services.AddTransient<IDataContext, DataContext>();
             services.AddTransient<ISeatService, SeatService>();
             services.AddTransient<IBuildingEventService, BuildingEventService>();
         }
@@ -33,7 +35,11 @@ namespace UsherSheat.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+                {    
+                    routes.MapRoute("defaut","{controller}/{action}/{id}");
+                }
+            );
         }
     }
 }

@@ -22,16 +22,22 @@ namespace UsherSheat.Api.Controllers
             _dataContext = dataContext;
         }
 
-        // GET: api/<controller>
+        // GET: api/get/<controller>
         [HttpGet]
         public IEnumerable<Seat> Get()
         {
             return _dataContext.SeatService.Gets();            
         }
 
-        [Route("api/GetByPosition")]
-        [HttpGet]
-        public IEnumerable<Seat> GetByPosition(Position position)
+        /// <summary>
+        /// Get seat based on Position
+        /// url will be : http://localhost:54392/api/seat/GetByPosition/2/1 which x:2 and y:1
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        [HttpGet("GetByPosition/{x:int}/{y:int}")]
+        public IEnumerable<Seat> GetByPosition(int x, int y)
         {
             throw new NotImplementedException();
         }
