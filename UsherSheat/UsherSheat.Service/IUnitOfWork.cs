@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using UsherSheat.Core;
-
-namespace UsherSheat.Service
+﻿namespace UsherSheat.Service
 {
-    public interface IDataContext
+    public interface IUnitOfWork
     {
         /// <summary>
-        /// list of Event Building
+        /// Data Context that represents seat database
         /// </summary>
-        List<BuildingEvent> Events { get; set; }
+        DataContext Context { get; set; }
 
         /// <summary>
         /// Building Event Service
@@ -27,10 +24,10 @@ namespace UsherSheat.Service
         void Save(string fileName);
 
         /// <summary>
-        /// Load all building event from a file
+        /// Load all building event from a file and save it to context
         /// </summary>
         /// <param name="fileName">the fileName</param>
         /// <returns></returns>
-        List<BuildingEvent> Load(string fileName);        
+        void Load(string fileName);        
     }
 }

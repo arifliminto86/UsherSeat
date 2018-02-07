@@ -11,14 +11,14 @@ namespace UsherSheat.Service.Service
         private const int MaxRow = 4;
         private const int SmallColumn = 5;        
 
-        public BuildingEventService(IDataContext dataContext) : base(dataContext)
+        public BuildingEventService(IUnitOfWork uow) : base(uow)
         {
             //nothing to do
         }
 
         public BuildingEvent Get(int id)
         {
-            return DataContext.Events.SingleOrDefault(w => w.Id == id);            
+            return Uow.Context.Events.SingleOrDefault(w => w.Id == id);            
         }
 
         public List<BuildingEvent> Gets()
@@ -45,10 +45,10 @@ namespace UsherSheat.Service.Service
                 EventTime = DateTime.Now,
                 MaxColumn = MaxColumn,
                 MaxRow = MaxRow,
-                Seats =  DataContext.SeatService.CreateDefaultSeats(MaxRow, MaxColumn, SmallColumn)
+                Seats =  Uow.SeatService.CreateDefaultSeats(MaxRow, MaxColumn, SmallColumn)
             };
             
-            DataContext.Events.Add(building);
+            Uow.Context.Events.Add(building);
             return building;
         }
     }

@@ -11,22 +11,22 @@ namespace UsherSheat.Api.Controllers
     [Route("api/[controller]")]
     public class SeatController : Controller
     {
-        private readonly IDataContext _dataContext;
+        private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
         /// Default ctor
         /// </summary>
-        /// <param name="dataContext">data context that we inject</param>
-        public SeatController(IDataContext dataContext)
+        /// <param name="unitOfWork">data context that we inject</param>
+        public SeatController(IUnitOfWork unitOfWork)
         {
-            _dataContext = dataContext;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/get/<controller>
         [HttpGet]
         public IEnumerable<Seat> Get()
         {
-            return _dataContext.SeatService.Gets();            
+            return _unitOfWork.SeatService.Gets();            
         }
 
         /// <summary>
@@ -46,21 +46,21 @@ namespace UsherSheat.Api.Controllers
         [HttpGet("{id}")]
         public Seat Get(int id)
         {
-            return _dataContext.SeatService.Get(id);
+            return _unitOfWork.SeatService.Get(id);
         }
 
         // POST api/<controller>
         [HttpPost]
         public void Post([FromBody]Seat value)
         {
-            _dataContext.SeatService.Create(value);
+            _unitOfWork.SeatService.Create(value);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Seat value)
         {
-            _dataContext.SeatService.Update(id, value);
+            _unitOfWork.SeatService.Update(id, value);
         }       
     }
 }

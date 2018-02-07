@@ -2,11 +2,11 @@
 {
     public class BaseService
     {
-        protected IDataContext DataContext;
+        protected IUnitOfWork Uow;
 
-        public BaseService(IDataContext dataContext)
-        {
-            DataContext = dataContext;
+        public BaseService(IUnitOfWork uow)
+        {            
+            Uow = uow;
         }
     }
 }

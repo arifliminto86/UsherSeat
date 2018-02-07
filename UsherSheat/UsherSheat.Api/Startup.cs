@@ -9,7 +9,7 @@ namespace UsherSheat.Api
 {
     public class Startup
     {
-        public static DataContext DataContext;
+        public static UnitOfWork DataContext;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,7 +22,7 @@ namespace UsherSheat.Api
         {
             services.AddRouting();
             services.AddMvc();
-            services.AddTransient<IDataContext, DataContext>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISeatService, SeatService>();
             services.AddTransient<IBuildingEventService, BuildingEventService>();
         }

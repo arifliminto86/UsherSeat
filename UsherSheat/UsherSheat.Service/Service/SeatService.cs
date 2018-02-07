@@ -7,24 +7,24 @@ namespace UsherSheat.Service.Service
 {
     public class SeatService : BaseService, ISeatService
     {            
-        public SeatService(DataContext dataContext) : base(dataContext)
+        public SeatService(UnitOfWork uow) : base(uow)
         {
             //nothing to do
         }
 
         public Seat Get(int id)
         {
-            return DataContext.Events.First()?.Seats.SingleOrDefault(w=>w.Id == id);
+            return Uow.Context.Events.First()?.Seats.SingleOrDefault(w=>w.Id == id);
         }
 
         public List<Seat> Gets()
         {
-            return DataContext.Events.First()?.Seats;
+            return Uow.Context.Events.First()?.Seats;
         }
 
         public Seat Update(int id, Seat newObj)
         {
-            foreach (var seat in DataContext.Events.First().Seats)
+            foreach (var seat in Uow.Context.Events.First().Seats)
             {
                 if (seat.Id == id)
                 {
@@ -40,7 +40,7 @@ namespace UsherSheat.Service.Service
 
         public void Create(Seat newItem)
         {        
-            DataContext.Events.First()?.Seats.Add(newItem);
+            Uow.Context.Events.First()?.Seats.Add(newItem);
         }
 
         public List<Seat> CreateDefaultSeats(int maxRow, int maxColumn, int maxSmallColumn)
@@ -67,7 +67,7 @@ namespace UsherSheat.Service.Service
                     }
                 }
             }
-            return DataContext.Events.First().Seats;            
+            return Uow.Context.Events.First().Seats;            
         }
     }
 }
