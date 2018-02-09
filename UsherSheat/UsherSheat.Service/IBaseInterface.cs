@@ -26,9 +26,9 @@ namespace UsherSheat.Service
         /// Update object given an id
         /// </summary>
         /// <param name="id">object Id</param>
-        /// <param name="oldObj">old object</param>
+        /// <param name="newObj">new object</param>
         /// <returns>updated object</returns>
-        T Update(int id, T oldObj);
+        T Update(int id, T newObj);
 
         /// <summary>
         /// Create object

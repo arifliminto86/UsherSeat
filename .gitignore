@@ -13,4 +13,5 @@ UsherSheat/.vs/UsherSheat/v15/Server/sqlite3/db.lock
 UsherSheat/UsherSheat.Service/obj/
 UsherSheat/UsherSheat.Service/bin/Debug/netcoreapp2.0/UsherSheat.Service.dll
 UsherSheat/UsherSheat.Service/bin/
+UsherSheat/UsherSheat.Core/bin/
 UsherSheat/UsherSheat.Common/obj/
