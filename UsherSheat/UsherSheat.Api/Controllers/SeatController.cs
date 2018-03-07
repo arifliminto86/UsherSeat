@@ -37,7 +37,19 @@ namespace UsherSheat.Api.Controllers
         /// <param name="y"></param>
         /// <returns></returns>
         [HttpGet("GetByPosition/{x:int}/{y:int}")]
-        public IEnumerable<Seat> GetByPosition(int x, int y)
+        public Seat GetByPosition(int x, int y)
+        {
+            var seat = _unitOfWork.SeatService.GetByPosition(x, y);
+
+            return seat;
+        }
+
+        /// <summary>
+        /// Get Empty Seat so ushers can assign people to the empty seat
+        /// </summary>
+        /// <returns>List of empty seat</returns>
+        [HttpGet("GetEmptySeat")]
+        public Seat GetEmptySeat()
         {
             throw new NotImplementedException();
         }

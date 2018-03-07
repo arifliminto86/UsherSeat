@@ -33,6 +33,7 @@ namespace UsherSheat.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/error"); // to re-direct the error pages
             }
 
             app.UseMvc(routes =>

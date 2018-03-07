@@ -1,4 +1,4 @@
-﻿function seat()
+function seat()
 {
     /** global variable **/
     var totalPeople = 0;

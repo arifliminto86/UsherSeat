@@ -23,8 +23,8 @@ namespace UsherSheat.Service.Service
 
         public List<BuildingEvent> Gets()
         {
-            //nothing to do
-            throw new NotImplementedException();
+            return Uow.Context.Events;
+
         }
 
         public BuildingEvent Update(int id, BuildingEvent newObj)
