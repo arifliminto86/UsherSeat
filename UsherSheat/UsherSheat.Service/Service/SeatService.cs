@@ -70,9 +70,9 @@ namespace UsherSheat.Service.Service
             return Uow.Context.Events.First().Seats;            
         }
 
-        public Seat GetByPosition(int x, int y)
+        public Seat GetByPosition(int column, int x, int y)
         {
-            return Uow.Context.Events.First()?.Seats.SingleOrDefault(w => w.Position.X == x && w.Position.Y == y);
+            return Uow.Context.Events.First()?.Seats.SingleOrDefault(w => w.Position.X == x && w.Position.Y == y && w.Column == column);
         }
     }
 }

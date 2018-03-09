@@ -1,6 +1,7 @@
 ﻿class SeatDto {
     column: number;
-    row: number;
+    x: number;
+    y:number;
     isOccupied: boolean;
     isDisabled: boolean;   
 }

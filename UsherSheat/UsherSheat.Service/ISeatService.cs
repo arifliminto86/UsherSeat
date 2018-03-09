@@ -17,9 +17,10 @@ namespace UsherSheat.Service
         /// <summary>
         /// Get Seat number based on position
         /// </summary>
+        /// <param name="column">column that seat belong to</param>
         /// <param name="x">x position</param>
         /// <param name="y">y position</param>
         /// <returns></returns>
-        Seat GetByPosition(int x, int y);
+        Seat GetByPosition(int column, int x, int y);
     }
 }

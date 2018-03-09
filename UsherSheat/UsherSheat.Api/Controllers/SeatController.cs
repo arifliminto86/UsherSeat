@@ -31,15 +31,16 @@ namespace UsherSheat.Api.Controllers
 
         /// <summary>
         /// Get seat based on Position
-        /// url will be : http://localhost:54392/api/seat/GetByPosition/2/1 which x:2 and y:1
+        /// url will be : http://localhost:54392/api/seat/GetByPosition/1/2/1 which x:2 and y:1
         /// </summary>
+        /// <param name="column"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        [HttpGet("GetByPosition/{x:int}/{y:int}")]
-        public Seat GetByPosition(int x, int y)
+        [HttpGet("GetByPosition/{column:int}/{x:int}/{y:int}")]
+        public Seat GetByPosition(int column, int x, int y)
         {
-            var seat = _unitOfWork.SeatService.GetByPosition(x, y);
+            var seat = _unitOfWork.SeatService.GetByPosition(column, x, y);
 
             return seat;
         }

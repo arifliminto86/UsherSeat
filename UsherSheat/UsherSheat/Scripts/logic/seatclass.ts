@@ -1,14 +1,16 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
-class SeatLogic {
+class SeatLogic
+{
 
-    public models:Array<SeatDto> = [];
+    private models:Array<SeatDto> = [];
 
     /*
      * Url of the web api
      */
-    url : string;
+    url: string = 'http://localhost:54392/api/seat/';
 
-    constructor(urlParameter) {
+    constructor(urlParameter)
+    {
         this.url = urlParameter;
         this.models = new Array<SeatDto>();
     }
@@ -23,11 +25,11 @@ class SeatLogic {
     /**
      * check if seat is already occupied and
      * if not,  Add new seat and set it to be occupied and save it to the database
-     * @param column
-     * @param x
-     * @param y
+     * @param column : which column that has been occupied
+     * @param x : x coordinate
+     * @param y : y coordinate
      */
-    occupiedSeat(column:number, x: number, y: number) {
+    public occupySeat(column:number, x: number, y: number) {
 
         if (this.isOccupied(column, x, y) === false) {
 
@@ -36,14 +38,46 @@ class SeatLogic {
         }
     }
 
-    isOccupied(column: number, x: number, y: number): boolean {
+    /**
+     * Check if seat is already occupied
+     * @param column
+     * @param x
+     * @param y
+     */
+    public isOccupied(column: number, x: number, y: number): boolean {
+        var seat = this.getSeat(column, x, y);
+
+        if (seat) {
+            throw new TypeError("Seat is not exist");
+        }
+
+        if (seat.isOccupied) {
+            return true;
+        }
+
         return false;
+    }
+
+
+    public getSeat(column: number, x: number, y: number): SeatDto {
+
+        this.models.forEach(
+            value =>
+            {
+                if (value.column === column && value.x === x && value.y === y)
+                {
+                    return value;
+                }
+            });
+
+        return null;
     }
 
     /**
      * Refresh the dash board periodicly from web api
      */
-    refreshDashboard() {
+    public refreshDashboard() {
+        
         $.ajax(
             {
                 url: this.url,
@@ -52,21 +86,23 @@ class SeatLogic {
                 success(result) {
                 },
 
-            }).done(results => {
-            //parse it into models                    
-            this.models.length = 0; //clear array
+            }).done(results =>
+            {
+                //parse it into models                    
+                this.models.length = 0; //clear array
 
-            for (var i = 0; i < results.length-1; i++) {
+                for (var i = 0; i < results.length-1; i++) {
 
-                let seat = new SeatDto();
-                seat.column = results[i].column;
-                seat.row = results[i].row;
-                seat.isOccupied = results[i].isOccupied;
-                seat.isDisabled = results[i].isDisabled;
-                this.models.push(seat);
-            }
+                    let seat = new SeatDto();
+                    seat.column = results[i].column;
+                    seat.x = results[i].Position.x;
+                    seat.y = results[i].Position.y;
+                    seat.isOccupied = results[i].isOccupied;
+                    seat.isDisabled = results[i].isDisabled;
+                    this.models.push(seat);
+                }
                 
-        });
+            });
         
-    }
+    }    
 };
