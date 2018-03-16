@@ -4,4 +4,9 @@
     y:number;
     isOccupied: boolean;
     isDisabled: boolean;   
+
+    constructor() {
+        this.isOccupied = false;
+        this.isDisabled = false;
+    }
 }
